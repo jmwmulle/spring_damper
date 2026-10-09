@@ -1,0 +1,2 @@
+# Preserve original upstream bytes, including their whitespace.
+tools/goldens/upstream/** -whitespace

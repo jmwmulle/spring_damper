@@ -48,13 +48,13 @@ float squaref(float x)
     return x*x;
 }
 void spring_damper_exact_stiffness_damping(
-    float& x, 
-    float& v, 
-    float x_goal, 
-    float v_goal, 
-    float stiffness, 
-    float damping, 
-    float dt, 
+    float& x,
+    float& v,
+    float x_goal,
+    float v_goal,
+    float stiffness,
+    float damping,
+    float dt,
     float eps = 1e-5f)
 {
     float g = x_goal;
@@ -62,38 +62,38 @@ void spring_damper_exact_stiffness_damping(
     float s = stiffness;
     float d = damping;
     float c = g + (d*q) / (s + eps);
-    float y = d / 2.0f; 
-    
-    if (fabs(s - (d*d) / 4.0f) < eps) 
+    float y = d / 2.0f;
+
+    if (fabs(s - (d*d) / 4.0f) < eps)
     {
         float j0 = x - c;
         float j1 = v + j0*y;
-        
+
         float eydt = fast_negexp(y*dt);
-        
+
         x =  j0*eydt + dt*j1*eydt + c;
         v = -y*j0*eydt - y*dt*j1*eydt + j1*eydt;
     }
-    else if (s - (d*d) / 4.0f > 0.0) 
+    else if (s - (d*d) / 4.0f > 0.0)
     {
         float w = sqrtf(s - (d*d)/4.0f);
         float j = sqrtf(squaref(v + y*(x - c)) / (w*w + eps) + squaref(x - c));
         float p = fast_atan((v + (x - c) * y) / (-(x - c)*w + eps));
-        
+
         j = (x - c) > 0.0f ? j : -j;
-        
+
         float eydt = fast_negexp(y*dt);
-        
+
         x = j*eydt*cosf(w*dt + p) + c;
         v = -y*j*eydt*cosf(w*dt + p) - w*j*eydt*sinf(w*dt + p);
     }
-    else if (s - (d*d) / 4.0f < 0.0) 
+    else if (s - (d*d) / 4.0f < 0.0)
     {
         float y0 = (d + sqrtf(d*d - 4*s)) / 2.0f;
         float y1 = (d - sqrtf(d*d - 4*s)) / 2.0f;
         float j1 = (c*y0 - x*y0 - v) / (y1 - y0);
         float j0 = x - j1 - c;
-        
+
         float ey0dt = fast_negexp(y0*dt);
         float ey1dt = fast_negexp(y1*dt);
 
@@ -126,52 +126,52 @@ float critical_frequency(float halflife)
     return stiffness_to_frequency(squaref(halflife_to_damping(halflife)) / 4.0f);
 }
 void spring_damper_exact(
-    float& x, 
-    float& v, 
-    float x_goal, 
-    float v_goal, 
-    float frequency, 
-    float halflife, 
-    float dt, 
+    float& x,
+    float& v,
+    float x_goal,
+    float v_goal,
+    float frequency,
+    float halflife,
+    float dt,
     float eps = 1e-5f)
-{    
+{
     float g = x_goal;
     float q = v_goal;
     float s = frequency_to_stiffness(frequency);
     float d = halflife_to_damping(halflife);
     float c = g + (d*q) / (s + eps);
-    float y = d / 2.0f; 
-    
-    if (fabs(s - (d*d) / 4.0f) < eps) 
+    float y = d / 2.0f;
+
+    if (fabs(s - (d*d) / 4.0f) < eps)
     {
         float j0 = x - c;
         float j1 = v + j0*y;
-        
+
         float eydt = fast_negexp(y*dt);
-        
+
         x = j0*eydt + dt*j1*eydt + c;
         v = -y*j0*eydt - y*dt*j1*eydt + j1*eydt;
     }
-    else if (s - (d*d) / 4.0f > 0.0) 
+    else if (s - (d*d) / 4.0f > 0.0)
     {
         float w = sqrtf(s - (d*d)/4.0f);
         float j = sqrtf(squaref(v + y*(x - c)) / (w*w + eps) + squaref(x - c));
         float p = fast_atan((v + (x - c) * y) / (-(x - c)*w + eps));
-        
+
         j = (x - c) > 0.0f ? j : -j;
-        
+
         float eydt = fast_negexp(y*dt);
-        
+
         x = j*eydt*cosf(w*dt + p) + c;
         v = -y*j*eydt*cosf(w*dt + p) - w*j*eydt*sinf(w*dt + p);
     }
-    else if (s - (d*d) / 4.0f < 0.0) 
+    else if (s - (d*d) / 4.0f < 0.0)
     {
         float y0 = (d + sqrtf(d*d - 4*s)) / 2.0f;
         float y1 = (d - sqrtf(d*d - 4*s)) / 2.0f;
         float j1 = (c*y0 - x*y0 - v) / (y1 - y0);
         float j0 = x - j1 - c;
-        
+
         float ey0dt = fast_negexp(y0*dt);
         float ey1dt = fast_negexp(y1*dt);
 
@@ -188,52 +188,52 @@ float damping_ratio_to_damping(float ratio, float stiffness)
     return ratio * 2.0f * sqrtf(stiffness);
 }
 void spring_damper_exact_ratio(
-    float& x, 
-    float& v, 
-    float x_goal, 
-    float v_goal, 
-    float damping_ratio, 
-    float halflife, 
-    float dt, 
+    float& x,
+    float& v,
+    float x_goal,
+    float v_goal,
+    float damping_ratio,
+    float halflife,
+    float dt,
     float eps = 1e-5f)
-{    
+{
     float g = x_goal;
     float q = v_goal;
     float d = halflife_to_damping(halflife);
     float s = damping_ratio_to_stiffness(damping_ratio, d);
     float c = g + (d*q) / (s + eps);
-    float y = d / 2.0f; 
-    
-    if (fabs(s - (d*d) / 4.0f) < eps) 
+    float y = d / 2.0f;
+
+    if (fabs(s - (d*d) / 4.0f) < eps)
     {
         float j0 = x - c;
         float j1 = v + j0*y;
-        
+
         float eydt = fast_negexp(y*dt);
-        
+
         x = j0*eydt + dt*j1*eydt + c;
         v = -y*j0*eydt - y*dt*j1*eydt + j1*eydt;
     }
-    else if (s - (d*d) / 4.0f > 0.0) 
+    else if (s - (d*d) / 4.0f > 0.0)
     {
         float w = sqrtf(s - (d*d)/4.0f);
         float j = sqrtf(squaref(v + y*(x - c)) / (w*w + eps) + squaref(x - c));
         float p = fast_atan((v + (x - c) * y) / (-(x - c)*w + eps));
-        
+
         j = (x - c) > 0.0f ? j : -j;
-        
+
         float eydt = fast_negexp(y*dt);
-        
+
         x = j*eydt*cosf(w*dt + p) + c;
         v = -y*j*eydt*cosf(w*dt + p) - w*j*eydt*sinf(w*dt + p);
     }
-    else if (s - (d*d) / 4.0f < 0.0) 
+    else if (s - (d*d) / 4.0f < 0.0)
     {
         float y0 = (d + sqrtf(d*d - 4*s)) / 2.0f;
         float y1 = (d - sqrtf(d*d - 4*s)) / 2.0f;
         float j1 = (c*y0 - x*y0 - v) / (y1 - y0);
         float j0 = x - j1 - c;
-        
+
         float ey0dt = fast_negexp(y0*dt);
         float ey1dt = fast_negexp(y1*dt);
 
@@ -242,18 +242,18 @@ void spring_damper_exact_ratio(
     }
 }
 void critical_spring_damper_exact(
-    float& x, 
-    float& v, 
-    float x_goal, 
-    float v_goal, 
-    float halflife, 
+    float& x,
+    float& v,
+    float x_goal,
+    float v_goal,
+    float halflife,
     float dt)
 {
     float g = x_goal;
     float q = v_goal;
     float d = halflife_to_damping(halflife);
     float c = g + (d*q) / ((d*d) / 4.0f);
-    float y = d / 2.0f;	
+    float y = d / 2.0f;
     float j0 = x - c;
     float j1 = v + j0*y;
     float eydt = fast_negexp(y*dt);
@@ -262,13 +262,13 @@ void critical_spring_damper_exact(
     v = eydt*(v - j1*y*dt);
 }
 void simple_spring_damper_exact(
-    float& x, 
-    float& v, 
-    float x_goal, 
-    float halflife, 
+    float& x,
+    float& v,
+    float x_goal,
+    float halflife,
     float dt)
 {
-    float y = halflife_to_damping(halflife) / 2.0f;	
+    float y = halflife_to_damping(halflife) / 2.0f;
     float j0 = x - x_goal;
     float j1 = v + j0*y;
     float eydt = fast_negexp(y*dt);
@@ -277,12 +277,12 @@ void simple_spring_damper_exact(
     v = eydt*(v - j1*y*dt);
 }
 void decay_spring_damper_exact(
-    float& x, 
-    float& v, 
-    float halflife, 
+    float& x,
+    float& v,
+    float halflife,
     float dt)
 {
-    float y = halflife_to_damping(halflife) / 2.0f;	
+    float y = halflife_to_damping(halflife) / 2.0f;
     float j1 = v + x*y;
     float eydt = fast_negexp(y*dt);
 
@@ -300,54 +300,54 @@ float lag_to_halflife(float lag)
 static inline float smoothstep(float x)
 {
     x = clamp(x, 0.0f, 1.0f);
-    return x * x * (3.0f - 2.0f * x);  
+    return x * x * (3.0f - 2.0f * x);
 }
 void double_spring_damper_exact(
-    float& x, 
-    float& v, 
+    float& x,
+    float& v,
     float& xi,
     float& vi,
     float x_goal,
-    float halflife, 
+    float halflife,
     float dt)
 {
     simple_spring_damper_exact(xi, vi, x_goal, 0.5f * halflife, dt);
     simple_spring_damper_exact(x, v, xi, 0.5f * halflife, dt);
 }
 void spring_character_update(
-    float& x, 
-    float& v, 
-    float& a, 
-    float v_goal, 
-    float halflife, 
+    float& x,
+    float& v,
+    float& a,
+    float v_goal,
+    float halflife,
     float dt)
 {
-    float y = halflife_to_damping(halflife) / 2.0f;	
+    float y = halflife_to_damping(halflife) / 2.0f;
     float j0 = v - v_goal;
     float j1 = a + j0*y;
     float eydt = fast_negexp(y*dt);
 
-    x = eydt*(((-j1)/(y*y)) + ((-j0 - j1*dt)/y)) + 
+    x = eydt*(((-j1)/(y*y)) + ((-j0 - j1*dt)/y)) +
         (j1/(y*y)) + j0/y + v_goal * dt + x;
     v = eydt*(j0 + j1*dt) + v_goal;
     a = eydt*(a - j1*y*dt);
 }
 void spring_character_predict(
-    float px[], 
-    float pv[], 
-    float pa[], 
+    float px[],
+    float pv[],
+    float pa[],
     int count,
-    float x, 
-    float v, 
-    float a, 
-    float v_goal, 
+    float x,
+    float v,
+    float a,
+    float v_goal,
     float halflife,
     float dt)
 {
     for (int i = 0; i < count; i++)
     {
-        px[i] = x; 
-        pv[i] = v; 
+        px[i] = x;
+        pv[i] = v;
         pa[i] = a;
     }
 
@@ -450,15 +450,15 @@ void tracking_spring_update_exact(
     float t1 = a_gain * (1.0f - v_gain) * (1.0f - x_gain);
     float t2 = (v_gain * (1.0f - x_gain)) / gain_dt;
     float t3 = x_gain / (gain_dt*gain_dt);
-    
+
     float stiffness = t3;
     float damping = (1.0f - t0) / gain_dt;
     float spring_x_goal = x_goal;
     float spring_v_goal = (t2*v_goal + t1*a_goal) / ((1.0f - t0) / gain_dt);
-    
+
     spring_damper_exact_stiffness_damping(
-      x, 
-      v, 
+      x,
+      v,
       spring_x_goal,
       spring_v_goal,
       stiffness,
@@ -478,15 +478,15 @@ void tracking_spring_update_no_acceleration_exact(
     float t0 = (1.0f - v_gain) * (1.0f - x_gain);
     float t2 = (v_gain * (1.0f - x_gain)) / gain_dt;
     float t3 = x_gain / (gain_dt*gain_dt);
-    
+
     float stiffness = t3;
     float damping = (1.0f - t0) / gain_dt;
     float spring_x_goal = x_goal;
     float spring_v_goal = t2*v_goal / ((1.0f - t0) / gain_dt);
 
     spring_damper_exact_stiffness_damping(
-      x, 
-      v, 
+      x,
+      v,
       spring_x_goal,
       spring_v_goal,
       stiffness,
@@ -503,15 +503,15 @@ void tracking_spring_update_no_velocity_acceleration_exact(
 {
     float t0 = 1.0f - x_gain;
     float t3 = x_gain / (gain_dt*gain_dt);
-    
+
     float stiffness = t3;
     float damping = (1.0f - t0) / gain_dt;
     float spring_x_goal = x_goal;
     float spring_v_goal = 0.0f;
-  
+
     spring_damper_exact_stiffness_damping(
-      x, 
-      v, 
+      x,
+      v,
       spring_x_goal,
       spring_v_goal,
       stiffness,
@@ -534,11 +534,11 @@ float tracking_target_velocity(
     return (x_next - x_curr) / dt;
 }
 void dead_blending_transition(
-    float& ext_x, 
-    float& ext_v, 
-    float& ext_t, 
-    float src_x,  
-    float src_v)  
+    float& ext_x,
+    float& ext_v,
+    float& ext_t,
+    float src_x,
+    float src_v)
 {
     ext_x = src_x;
     ext_v = src_v;
@@ -549,17 +549,17 @@ float smoothstep(float t, float s)
     return s * (t > 1.0f ? 1.0f : 3*t*t - 2*t*t*t);
 }
 void dead_blending_update(
-    float& out_x,    
-    float& out_v,    
-    float& ext_x,    
-    float& ext_v,    
-    float& ext_t,    
-    float in_x,      
-    float in_v,      
-    float blendtime, 
-    float dt,        
+    float& out_x,
+    float& out_v,
+    float& ext_x,
+    float& ext_v,
+    float& ext_t,
+    float in_x,
+    float in_v,
+    float blendtime,
+    float dt,
     float eps=1e-8f)
-{    
+{
     if (ext_t < blendtime)
     {
         ext_x += ext_v * dt;
@@ -577,18 +577,18 @@ void dead_blending_update(
     }
 }
 void dead_blending_update_decay(
-    float& out_x,         
-    float& out_v,         
-    float& ext_x,         
-    float& ext_v,         
-    float& ext_t,         
-    float in_x,           
-    float in_v,           
-    float blendtime,      
-    float decay_halflife, 
-    float dt,             
+    float& out_x,
+    float& out_v,
+    float& ext_x,
+    float& ext_v,
+    float& ext_t,
+    float in_x,
+    float in_v,
+    float blendtime,
+    float decay_halflife,
+    float dt,
     float eps=1e-8f)
-{    
+{
     if (ext_t < blendtime)
     {
         ext_v = damper_decay_exact(ext_v, decay_halflife, dt);
@@ -613,33 +613,33 @@ float smoothstep_dt(float t, float s)
 void smoothstep_solve(
     float& t, float& s, float x, float v, float overshoot = 0.05f, float eps=1e-8f)
 {
-    
+
     if (fabsf(v) < 1e-8f)
     {
         t = 0.0f;
         s = x;
         return;
     }
-    
-    
+
+
     if (x < 0.0)
     {
         smoothstep_solve(t, s, -x, -v);
         s = -s;
         return;
     }
-    
-    
+
+
     float t0 = (v - 6*x + sqrtf(max((6*x - v)*(6*x - v) + 8*v*v, eps))) / (4*v);
     float t1 = (v - 6*x - sqrtf(max((6*x - v)*(6*x - v) + 8*v*v, eps))) / (4*v);
-    
-    
+
+
     t = -0.5f > t1 && t1 > -(0.5f + overshoot) ? t1 : t0;
 
-    
-    float vt = smoothstep_dt(t, 1.0f);        
 
-    
+    float vt = smoothstep_dt(t, 1.0f);
+
+
     s = fabsf(vt) < eps ? 0.0f : v / vt;
 }
 void extrapolate(
@@ -664,17 +664,17 @@ void velocity_spring_damper_exact(
     float eps = 1e-5f)
 {
     float x_diff = ((x_goal - xi) > 0.0f ? 1.0f : -1.0f) * v_goal;
-    
+
     float t_goal_future = halflife_to_lag(halflife);
     float x_goal_future = fabs(x_goal - xi) > t_goal_future * v_goal ?
         xi + x_diff * t_goal_future : x_goal;
-    
+
     simple_spring_damper_exact(x, v, x_goal_future, halflife, dt);
-    
-    xi = fabs(x_goal - xi) > dt * v_goal ? xi + x_diff * dt : x_goal; 
+
+    xi = fabs(x_goal - xi) > dt * v_goal ? xi + x_diff * dt : x_goal;
 }
 void inertialize_transition(
-    float& off_x, float& off_v, 
+    float& off_x, float& off_v,
     float src_x, float src_v,
     float dst_x, float dst_v)
 {
@@ -728,15 +728,15 @@ void timed_spring_damper_exact(
     float dt)
 {
     float min_time = t_goal > dt ? t_goal : dt;
-    
+
     float v_goal = (x_goal - xi) / min_time;
-    
+
     float t_goal_future = halflife_to_lag(halflife);
     float x_goal_future = t_goal_future < t_goal ?
         xi + v_goal * t_goal_future : x_goal;
-        
+
     simple_spring_damper_exact(x, v, x_goal_future, halflife, dt);
-    
+
     xi += v_goal * dt;
 }
 void piecewise_interpolation(
@@ -752,22 +752,22 @@ void piecewise_interpolation(
     i0 = i0 > npnts - 1 ? npnts - 1 : i0;
     i1 = i1 > npnts - 1 ? npnts - 1 : i1;
     float alpha = fmod(t, 1.0f);
-    
+
     x = lerp(pnts[i0], pnts[i1], alpha);
     v = (pnts[i0] - pnts[i1]) / npnts;
 }
 float spring_energy(
-    float x, 
-    float v, 
+    float x,
+    float v,
     float frequency,
-    float x_rest = 0.0f, 
+    float x_rest = 0.0f,
     float v_rest = 0.0f,
     float scale = 1.0f)
 {
     float s = frequency_to_stiffness(frequency);
-    
+
     return (
-        squaref(scale * (v - v_rest)) + s * 
+        squaref(scale * (v - v_rest)) + s *
         squaref(scale * (x - x_rest))) / 2.0f;
 }
 float resonant_frequency(float goal_frequency, float halflife)

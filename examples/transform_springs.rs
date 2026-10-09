@@ -32,6 +32,7 @@ fn main() {
 fn setup(mut commands: Commands) {
     commands.spawn((
         Camera3d::default(),
+        Msaa::Off,
         Transform::from_xyz(0.0, 7.0, 15.0).looking_at(Vec3::ZERO, Vec3::Y),
     ));
     for i in 0..5 {

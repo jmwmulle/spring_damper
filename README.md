@@ -38,6 +38,8 @@ The default clock reads `Time<Virtual>`. To control pauses or simulation time, i
 - `cargo run --example spring_gallery --features bevy`: six evolving response plots. Top to bottom: underdamped exact spring, critically damped spring, double spring, timed spring, velocity spring, exact damper. Space restarts the plots; Escape closes.
 - `cargo run --example transform_springs --features bevy`: wireframe cubes chase a moving orange marker while their rotations and scales settle. Space changes their halflife; Escape closes.
 
+The examples disable multisample anti-aliasing for reliable captures on the tested macOS/Metal host.
+
 ## Verification
 
 C++ reference fixtures cover scalar math, all nine tracking variants, transitions/easing, prediction, and quaternion forms at two frame-time schedules. Tests also cover zero/negative deltas, hitches, tiny halflives, transition continuity, quaternion sign, normalization and Bevy update scheduling. Regenerate with `tools/goldens/generate.sh`; no article text is copied. Fixtures are deterministic, losslessly compressed JSON below 2 MB. See PORTING.md for all intentional differences.

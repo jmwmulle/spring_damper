@@ -27,7 +27,7 @@ fn main() {
         .run();
 }
 fn setup(mut commands: Commands, mut gallery: ResMut<Gallery>) {
-    commands.spawn(Camera2d);
+    commands.spawn((Camera2d, Msaa::Off));
     for kind in 0..6 {
         let (mut x, mut v, mut xi, mut vi) = (0.0, 0.0, 0.0, 0.0);
         let mut points = vec![];

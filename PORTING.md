@@ -39,7 +39,8 @@ The Rust names and argument order match the upstream unless this table or the de
 9. The quaternion helpers expose their upstream epsilon explicitly. Motion-Matching's inverse quaternion is the negative of the conventional conjugate; that representative is retained where used, with its source's `quat_abs` selection. Angular velocities remain Vec3.
 10. The Bevy adapter also updates built-in generic Spring values. `add_spring_type` registers additional user types; applications register their reflection metadata separately. Virtual time freezes when no virtual clock is installed. Updates occur after animation and before transform propagation, without allocating.
 11. Reference JSON is stored as deterministic gzip, under 2 MB total. Its decoded data retains full nine-significant-digit C++ float output. Scalar constants are represented once per family. This is a storage-format change only.
-12. The external shared build-cache path is absolute in its local config to ensure both repositories use one cache. It is not part of the distributed crate.
+12. The examples explicitly include the gizmo rendering backends for 2D and 3D. They use `Msaa::Off`: on the development macOS/Metal host, default multisampling produced all-black screenshots; disabling it restored nonuniform rendered captures. This is an example rendering setting, with no change to spring math or plugin behavior.
+13. The external shared build-cache path is absolute in its local config to ensure both repositories use one cache. It is not part of the distributed crate.
 
 No test tolerance has been loosened: scalar x/v absolute error is at most 1e-5; quaternion rotation error is at most 1e-5 radians. The quaternion test uses the sign-aligned chord of normalized quaternions rather than acos(dot), which loses precision for very small angular errors.
 

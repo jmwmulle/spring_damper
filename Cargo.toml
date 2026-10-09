@@ -25,7 +25,7 @@ bevy_reflect = { version = "=0.19.1", default-features = false, features = ["std
 [dev-dependencies]
 serde_json = "1"
 flate2 = "1"
-bevy = { version = "=0.19.1", default-features = false, features = ["std", "bevy_gizmos", "bevy_core_pipeline", "bevy_render", "bevy_winit", "png", "x11", "tonemapping_luts", "zstd_rust"] }
+bevy = { version = "=0.19.1", default-features = false, features = ["std", "bevy_gizmos", "bevy_gizmos_render", "bevy_log", "bevy_sprite_render", "bevy_pbr", "bevy_core_pipeline", "bevy_render", "bevy_winit", "png", "x11", "tonemapping_luts", "zstd_rust"] }
 
 [lints.clippy]
 # Upstream signatures and constants remain recognizable.
