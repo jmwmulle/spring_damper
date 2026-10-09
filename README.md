@@ -44,7 +44,7 @@ The examples disable multisample anti-aliasing for reliable captures on the test
 
 C++ reference fixtures cover scalar math, all nine tracking variants, transitions/easing, prediction, and quaternion forms at two frame-time schedules. Tests also cover zero/negative deltas, hitches, tiny halflives, transition continuity, quaternion sign, normalization and Bevy update scheduling. Regenerate with `tools/goldens/generate.sh`; no article text is copied. Fixtures are deterministic, losslessly compressed JSON below 2 MB. See PORTING.md for all intentional differences.
 
-Local validation uses Rust 1.98.1. CI is prepared to check Rust 1.95; its compatibility is not yet verified by a remote run.
+Local validation uses Rust 1.98.1. Linux CI and the Rust 1.95 minimum-version check passed for the 0.1.0 release.
 
 A rough core-only timing on the development Apple Silicon host: 1,000 scalar springs over 1,000 updates took 2.818 ms total, approximately 0.0028 ms per batch of 1,000. This uses `rustc -O` and `tools/timing.rs`; it measures the scalar kernel, excluding Bevy, rendering and frame scheduling.
 
