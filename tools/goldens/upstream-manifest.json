@@ -1,0 +1,112 @@
+[
+  {
+    "path": "Motion-Matching/LICENSE",
+    "sha256_original": "b365a56d8b82ef890d1934e1e5ec9d60880b0a8f21819a7cd136bde99d24dae0",
+    "commit": "57b7250e0d34a4e456a34d47e24c2f05fdcc711e"
+  },
+  {
+    "path": "Motion-Matching/common.h",
+    "sha256_original": "59eba297f9ab38115aa3cdecd97b481ffad2cc2fb7ee54d1c6f1eaa04ca36318",
+    "commit": "57b7250e0d34a4e456a34d47e24c2f05fdcc711e"
+  },
+  {
+    "path": "Motion-Matching/quat.h",
+    "sha256_original": "e7905477cf5b938c5906d43705af867d161f6398dc811ef5c5bc52294de3332e",
+    "commit": "57b7250e0d34a4e456a34d47e24c2f05fdcc711e"
+  },
+  {
+    "path": "Motion-Matching/spring.h",
+    "sha256_original": "b514bf7c80c49280c784ead654b6dfa1ce709a5c944754f9da6b997e6e906e19",
+    "commit": "57b7250e0d34a4e456a34d47e24c2f05fdcc711e"
+  },
+  {
+    "path": "Motion-Matching/vec.h",
+    "sha256_original": "d50d17d7610ecdda706f26a8ccd7109828b2c737e987fd5559d6275e2d5d5ae1",
+    "commit": "57b7250e0d34a4e456a34d47e24c2f05fdcc711e"
+  },
+  {
+    "path": "Spring-It-On/LICENSE",
+    "sha256_original": "b365a56d8b82ef890d1934e1e5ec9d60880b0a8f21819a7cd136bde99d24dae0",
+    "commit": "4d97b497a78e40c7b47d49e8a9da27e4aa5616d6"
+  },
+  {
+    "path": "Spring-It-On/common.h",
+    "sha256_original": "ecb6e78f7158daf80c899fe8ff4da2ac291f4e0095af76fc37c63ae4857e5876",
+    "commit": "4d97b497a78e40c7b47d49e8a9da27e4aa5616d6"
+  },
+  {
+    "path": "Spring-It-On/controller.c",
+    "sha256_original": "b303bda903681fd92f5218b06f13b5d073ba3083e03e570b860dbbae6a0fa7d6",
+    "commit": "4d97b497a78e40c7b47d49e8a9da27e4aa5616d6"
+  },
+  {
+    "path": "Spring-It-On/cubiceasing.c",
+    "sha256_original": "4908309f497f5f7bd87db253cd82cab6d14d860d12dd3b0b8c66699e9689ea51",
+    "commit": "4d97b497a78e40c7b47d49e8a9da27e4aa5616d6"
+  },
+  {
+    "path": "Spring-It-On/damper.c",
+    "sha256_original": "71c22afec2b5f15fcddbaba9477e108f86c91b25142e8359f2dc5d7e1edd85f9",
+    "commit": "4d97b497a78e40c7b47d49e8a9da27e4aa5616d6"
+  },
+  {
+    "path": "Spring-It-On/deadblending.c",
+    "sha256_original": "4db98b36113e5c018237c21258747ed2fe915c0e2e1d813e5e1317528638ff59",
+    "commit": "4d97b497a78e40c7b47d49e8a9da27e4aa5616d6"
+  },
+  {
+    "path": "Spring-It-On/doublespring.c",
+    "sha256_original": "226082412d6ff89d72c6e74b99fd5925cf2505bf0be81d825b5fc2878634c3fd",
+    "commit": "4d97b497a78e40c7b47d49e8a9da27e4aa5616d6"
+  },
+  {
+    "path": "Spring-It-On/extrapolation.c",
+    "sha256_original": "a8638234239150e3292ced062e0394781de98b0a612a91709f0cc12113481ce6",
+    "commit": "4d97b497a78e40c7b47d49e8a9da27e4aa5616d6"
+  },
+  {
+    "path": "Spring-It-On/inertialeasing.c",
+    "sha256_original": "0827f9fa2c963ca8564917794f1eb19e52d99ac1a8a4f8ed690c8fd599f621a6",
+    "commit": "4d97b497a78e40c7b47d49e8a9da27e4aa5616d6"
+  },
+  {
+    "path": "Spring-It-On/inertialization.c",
+    "sha256_original": "e0cd2ddba47f3aa8c4cc132e4db6a211b55e98745e86ea59b558f667cfdde41e",
+    "commit": "4d97b497a78e40c7b47d49e8a9da27e4aa5616d6"
+  },
+  {
+    "path": "Spring-It-On/interpolation.c",
+    "sha256_original": "34d94a91d644595e66bfefa895fea1fbf05800c7c27fda85c69215450702d504",
+    "commit": "4d97b497a78e40c7b47d49e8a9da27e4aa5616d6"
+  },
+  {
+    "path": "Spring-It-On/resonance.c",
+    "sha256_original": "270732be715c51069db0a11346b5a913afde0c7e501fc607a15b48bf3261c495",
+    "commit": "4d97b497a78e40c7b47d49e8a9da27e4aa5616d6"
+  },
+  {
+    "path": "Spring-It-On/smoothing.c",
+    "sha256_original": "f15af7419be2cd85c8b6a2d5201d634d53fbdbebb3c6be1e2346db66aa74627b",
+    "commit": "4d97b497a78e40c7b47d49e8a9da27e4aa5616d6"
+  },
+  {
+    "path": "Spring-It-On/springdamper.c",
+    "sha256_original": "c31794cc547fbd37187f43b97fd676a9d874e2f3fed46ac05cbfb2fc67f8b027",
+    "commit": "4d97b497a78e40c7b47d49e8a9da27e4aa5616d6"
+  },
+  {
+    "path": "Spring-It-On/timedspring.c",
+    "sha256_original": "514b0e7c8fb9f6fe3d5327a8cbc12f39bd8a434332a143fca86049a5efd8a14c",
+    "commit": "4d97b497a78e40c7b47d49e8a9da27e4aa5616d6"
+  },
+  {
+    "path": "Spring-It-On/tracking.c",
+    "sha256_original": "9c49eaab1c2fab9c49e72ffc22dce5aa05bff29d0fa88ed767243649f93b1032",
+    "commit": "4d97b497a78e40c7b47d49e8a9da27e4aa5616d6"
+  },
+  {
+    "path": "Spring-It-On/velocityspring.c",
+    "sha256_original": "356f5953d6651b5c8eed0d80e60f58b390f83b21fc8b3e9147445c4a0be543e4",
+    "commit": "4d97b497a78e40c7b47d49e8a9da27e4aa5616d6"
+  }
+]
