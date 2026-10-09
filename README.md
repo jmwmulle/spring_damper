@@ -40,6 +40,10 @@ The default clock reads `Time<Virtual>`. To control pauses or simulation time, i
 
 The examples disable multisample anti-aliasing for reliable captures on the tested macOS/Metal host.
 
+## Dependency compatibility
+
+The glam requirement accepts compatible 0.32 patch releases; it no longer forces 0.32.0. Version 0.1.1 is checked with glam 0.32.1 (including serde) and Bevy 0.19.1. Bevy remains on 0.19.1; this release does not migrate to Bevy 0.20. Dependency-boundary checks verify shared vector/quaternion types, adapter scheduling and pause behavior. The upstream animation math is unchanged; glam 0.32.1 changes scalar-over-matrix division, which this port does not use, so unchanged reference trajectories are not regenerated for this patch.
+
 ## Verification
 
 C++ reference fixtures cover scalar math, all nine tracking variants, transitions/easing, prediction, and quaternion forms at two frame-time schedules. Tests also cover zero/negative deltas, hitches, tiny halflives, transition continuity, quaternion sign, normalization and Bevy update scheduling. Regenerate with `tools/goldens/generate.sh`; no article text is copied. Fixtures are deterministic, losslessly compressed JSON below 2 MB. See PORTING.md for all intentional differences.

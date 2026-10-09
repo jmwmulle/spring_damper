@@ -57,3 +57,7 @@ No test tolerance has been loosened: scalar x/v absolute error is at most 1e-5; 
 ## Release status
 
 Part A implementation and local validation are tracked in STATUS.md. Public release is authorized after minimal Bevy integration verification. Current MSRV/Linux CI and publication results are recorded on the repository Actions, Releases and registry pages. No source from a private game project is included.
+
+## 0.1.1 dependency compatibility
+
+Relax the exact glam 0.32.0 requirement to the standard compatible 0.32 patch range. Lockfile verification uses 0.32.1 with Bevy 0.19.1. The upstream glam patch fixes scalar-over-matrix division and adds element reciprocals; neither is used by the port. Core algorithms and reference fixtures remain unchanged. Targeted checks cover dependency unification, public glam/Bevy type interchange and the existing headless adapter behavior.
