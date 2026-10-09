@@ -57,6 +57,14 @@ A rough core-only timing on the development Apple Silicon host: 1,000 scalar spr
 
 Not affiliated with or endorsed by the Godot Foundation, the Godot Engine project or Daniel Holden.
 
-Translation and testing were performed with AI assistance and checked against executable upstream code. Visual acceptance and publication remain with the maintainer.
+## Porting work
 
-Original additions are offered under MIT OR Apache-2.0. Upstream-derived code retains the MIT attribution and licence requirements in THIRD_PARTY_NOTICES.md.
+- Design and implementation plan: Claude (Anthropic).
+- Rust port, Bevy integration, reference harnesses, implementation and verification: Codex (OpenAI).
+- The human initiator proposed having AI tools examine and port existing animation libraries and authorized the release. They did not perform the porting.
+
+These credits describe the work performed; they do not designate AI systems as copyright holders. Upstream algorithm authorship remains with Daniel Holden and the contributors credited above. The port is checked against executable upstream code. No credit to the human initiator or AI tools is required.
+
+## Licence
+
+The combined distribution is MIT, retaining the upstream notices in THIRD_PARTY_NOTICES.md and the source headers. Our original additions are dedicated to the public domain under CC0 1.0 Universal to the extent that the publisher can waive rights in them. Commercial and noncommercial use, modification and redistribution are permitted. See LICENSE.md for scope and LICENSE-CC0 for the waiver and fallback. This dedication does not remove the upstream notice requirement.

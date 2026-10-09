@@ -1,6 +1,6 @@
 # Implementation status
 
-2026-10-09: Part A (spring_damper) implemented locally, awaiting the maintainer's example review and release decision.
+2026-10-09: Part A (spring_damper) implemented and locally verified. The human initiator authorized public release after minimal Bevy integration verification on 2026-10-09.
 
 ## Completed locally
 
@@ -14,10 +14,10 @@
 - Reference regeneration is byte-identical; fixtures total 382,569 bytes.
 - Every translated Rust module has its upstream header; original source snapshots match the recorded hashes.
 
-## Release gate
+## Release preparation
 
-The final package dry-run compiled and verified successfully: 46 files, 651.6 KiB uncompressed / 429.5 KiB compressed. All licence notices are included; bundled upstream source snapshots are excluded. The final example captures are nonuniform (gallery: 8 colors / 22,954 non-background pixels; transforms: 7 colors / 2,840 non-background pixels), a technical capture check only. No GitHub repository has been created, no remote has been pushed, and no crate has been published.
+The release licence is MIT for the combined distribution, with original additions dedicated under CC0. Upstream MIT notices are preserved. Claude receives design credit; Codex receives port implementation and verification credit. The human initiator did not perform the porting and requires no credit. The approved GitHub identity is the repository owner and commit administrator; commit authorship identifies Codex.
 
-The maintainer must inspect the examples before release. Names, owner, licence and AI-assistance wording remain subject to the maintainer's publication decision. Current recommended choices are spring_damper, jmwmulle, MIT OR Apache-2.0 with retained upstream MIT notices, and an explicit AI-assistance note. Local commit identity was expressly approved.
+All four minimal Bevy integration tests pass: goal convergence, zero-delta freeze, same-frame transform propagation, and generic scalar/rotation/scale updates. All 20 all-feature tests pass. Both native examples were launched and captured on macOS/Metal. Nonuniform captures confirm rendering, not artistic acceptance or a performance guarantee.
 
-Rust 1.95 and Linux CI are configured but not yet run remotely. Visual appearance has not been judged by the agent.
+The updated package dry-run compiles and verifies. Package licence notices are included; tools/goldens/upstream snapshots are excluded. Public GitHub release and crates.io publication are authorized. Remote Linux/MSRV CI and publication results are recorded on the repository's Actions, Releases and crates.io pages as they complete.

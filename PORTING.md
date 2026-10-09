@@ -56,4 +56,4 @@ No test tolerance has been loosened: scalar x/v absolute error is at most 1e-5; 
 
 ## Release status
 
-Part A implementation and local validation are tracked in STATUS.md. This crate has not been published. MSRV and Linux CI require a future authorized remote run. No source from a private game project is included.
+Part A implementation and local validation are tracked in STATUS.md. Public release is authorized after minimal Bevy integration verification. Current MSRV/Linux CI and publication results are recorded on the repository Actions, Releases and registry pages. No source from a private game project is included.
