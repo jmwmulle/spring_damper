@@ -67,4 +67,4 @@ These credits describe the work performed; they do not designate AI systems as c
 
 ## Licence
 
-The combined distribution is MIT, retaining the upstream notices in THIRD_PARTY_NOTICES.md and the source headers. Our original additions are dedicated to the public domain under CC0 1.0 Universal to the extent that the publisher can waive rights in them. Commercial and noncommercial use, modification and redistribution are permitted. See LICENSE.md for scope and LICENSE-CC0 for the waiver and fallback. This dedication does not remove the upstream notice requirement.
+The combined distribution is MIT, retaining the upstream notices in THIRD_PARTY_NOTICES.md and the source headers. Our original additions are dedicated to the public domain under CC0 1.0 Universal to the extent that the publisher can waive rights in them. Commercial and noncommercial use, modification and redistribution are permitted. See LICENSING.md for scope and LICENSE-CC0 for the waiver and fallback. This dedication does not remove the upstream notice requirement.
